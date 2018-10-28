@@ -6,5 +6,5 @@ Dockerfile
 Usage
 ---
 ```
-docker pull bingege/openjdk8-alpine-ttf-localtime:0.0.1
+docker pull bingege/openjdk8-alpine-ttf-localtime:0.0.6
 ```
