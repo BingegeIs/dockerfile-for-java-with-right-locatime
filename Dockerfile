@@ -13,7 +13,7 @@ MAINTAINER yuweibin <269704385@qq.com>
 ENV TZ=Asia/Shanghai
 
 #设置环境变量
-ENV LC_ALL zh_CN.utf8
+# ENV LC_ALL zh_CN.utf8
 
 #设置时区
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
@@ -23,4 +23,4 @@ RUN set -xe \
 	&& apk --no-cache add ttf-dejavu fontconfig
 
 #设置编码
-RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+# RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
