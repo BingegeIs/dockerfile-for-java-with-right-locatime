@@ -1,27 +1,29 @@
 # Docker file for date and locale set and ttf
 # VERSION 0.0.1
 # Author: yuweibin
-# Image name: bingege/openjdk:8-jdk-alpine-ttf-localtime
+# Image name: bingege/openjdk:openjdk8-alpine-ttf-localtime
 
 #基础镜像
 FROM openjdk:8-jdk-alpine
 
 #作者
-MAINTAINER yuweibin <269704385@qq.com>
+LABEL Author="yuweibin <269704385@qq.com>" 
 
 #定义时区参数
-ENV TZ=Asia/Shanghai
-
-#设置环境变量
-# ENV LC_ALL zh_CN.utf8
+ENV TIME_ZONE Asiz/Shanghai
 
 #设置时区
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
+RUN \
+&& apk add --no-cache tzdata \
+#设置时区
+&& echo "${TIME_ZONE}" > /etc/timezone \ 
+&& ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
 #安装必要应用
 RUN set -xe \
 	&& apk --no-cache add ttf-dejavu fontconfig
-	
-CMD ["/bin/bash"]
-#设置编码
-# RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+
+CMD [ "sh", "-c", "echo $TIME_ZONE" ]
+EXPOSE 8080
+LABEL name="yuweibin"
+LABEL VERSION="0.0.4"
