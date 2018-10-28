@@ -21,6 +21,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
 #安装必要应用
 RUN set -xe \
 	&& apk --no-cache add ttf-dejavu fontconfig
-
+	
+CMD ["/bin/bash"]
 #设置编码
 # RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
