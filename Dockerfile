@@ -10,12 +10,10 @@ FROM openjdk:8-jdk-alpine
 LABEL Author="yuweibin <269704385@qq.com>" 
 
 #定义时区参数
-ENV TIME_ZONE Asiz/Shanghai
+ENV TIME_ZONE Asia/Shanghai
 
 #设置时区
-RUN \
-&& apk add --no-cache tzdata \
-#设置时区
+RUN apk add --no-cache tzdata \
 && echo "${TIME_ZONE}" > /etc/timezone \ 
 && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
@@ -26,4 +24,4 @@ RUN set -xe \
 CMD [ "sh", "-c", "echo $TIME_ZONE" ]
 EXPOSE 8080
 LABEL name="yuweibin"
-LABEL VERSION="0.0.4"
+LABEL VERSION="0.0.6"
